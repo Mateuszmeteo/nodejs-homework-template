@@ -6,7 +6,7 @@
 // usówanie  
 // zmiana faworite
 
-const Contact = require('./schemas/contact')
+const Contact = require('../models/contact')
 
 const getAllContacts = async () => {
     try {
