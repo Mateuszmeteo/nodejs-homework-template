@@ -19,6 +19,7 @@ const {
   
   const getContactById = async (req, res, next) => {
     const { contactId } = req.params;
+    
     try {
       const result = await getByIdContact(contactId);
       if (result) {
@@ -82,7 +83,7 @@ const {
       const { contactId } = req.params;
       const { favorite } = req.body;
   
-      if (favorite === undefined) {
+      if (!favorite === undefined) {
         return res.status(400).json({ message: 'missing field favorite' });
       }
   
