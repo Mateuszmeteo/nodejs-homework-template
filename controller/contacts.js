@@ -83,7 +83,7 @@ const {
       const { contactId } = req.params;
       const { favorite } = req.body;
   
-      if (!favorite === undefined) {
+      if (favorite === undefined) {
         return res.status(400).json({ message: 'missing field favorite' });
       }
   
