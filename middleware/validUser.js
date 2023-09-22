@@ -5,6 +5,10 @@ const schema = Joi.object({
     password: Joi.string().required(),
 });
 
+const schemaEmail = Joi.object({
+  email: Joi.string().email().required()
+});
+
 const validate = (schema, res, req, next) => {
   const validationBody = schema.validate(req.body)
 
@@ -17,5 +21,8 @@ const validate = (schema, res, req, next) => {
 module.exports = {
   userValid: (req, res, next) => {
     return validate(schema, res, req, next)
+  },
+  validationEmail: (req, res, next) => {
+    return validate(schemaEmail, res, req, next)
   }
 }

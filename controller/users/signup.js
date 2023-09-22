@@ -1,6 +1,8 @@
 const User = require('../../models/user');
 const bcrypt = require('bcryptjs');
 const gravatar = require('gravatar')
+const { nanoid } = require('nanoid')
+const { sendEmail } = require('./../../middleware/sendEmail')
 
 const signupUser = async(req, res) => {
   try {           
@@ -22,10 +24,13 @@ const signupUser = async(req, res) => {
       subscription: 'starter',
       avatarURL,
       password: hashedPassword, 
+      verificationToken: nanoid()
       });
       
          
     await newUser.save();
+
+    await sendEmail({ email, verificationToken: newUser, verificationToken })
                   
     res.status(201).json({
       user: {
