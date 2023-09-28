@@ -30,7 +30,7 @@ const signupUser = async(req, res) => {
          
     await newUser.save();
 
-    await sendEmail({ email, verificationToken: newUser, verificationToken })
+    await sendEmail({ email, verificationToken: newUser })
                   
     res.status(201).json({
       user: {
